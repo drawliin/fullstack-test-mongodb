@@ -20,5 +20,5 @@ mongoose.connect(`${process.env.MONGO_URI}/crud-app`, {
 
 app.use("/api/users", userRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4002;
 app.listen(5000, () => console.log(`Server running on port ${PORT}`));

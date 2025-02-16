@@ -1,7 +1,7 @@
 // frontend/src/services/api.js
 import axios from "axios";
-
-const API_URL = "http://localhost:5000/api/users";
+const port = process.env.PORT || 4002;
+const API_URL = `http://localhost:${port}/api/users`;
 
 export const fetchUsers = async () => {
   const response = await axios.get(API_URL);
