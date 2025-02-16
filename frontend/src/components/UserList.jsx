@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const port = process.env.PORT || 4002;
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState({ name: "", email: "" });
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const res = await axios.get("http://localhost:5000/api/users");
+      const res = await axios.get(`http://localhost:${port}/api/users`);
       setUsers(res.data);
     };
     fetchUsers();
@@ -16,13 +17,13 @@ const UserList = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post("http://localhost:5000/api/users", newUser);
+    const res = await axios.post(`http://localhost:${port}/api/users`, newUser);
     setUsers([...users, res.data]);
     setNewUser({ name: "", email: "" });
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/users/${id}`);
+    await axios.delete(`http://localhost:${port}/api/users/${id}`);
     setUsers(users.filter((user) => user._id !== id));
   };
 
